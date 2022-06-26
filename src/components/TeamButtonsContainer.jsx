@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ItemContainer } from './ItemContainer';
 import { TitleLogo } from './TitleLogo';
 
@@ -58,60 +58,59 @@ const LegendButton = styled.h5`
 
 
 
-const TeamButtonsContainer = ({ data }) => {
-  const [players, setPlayers] = useState([]);
+const TeamButtonsContainer = ({ players, setPlayers }) => {
 
-  const dataPlus = data.map((t) => {
-    t.playerPosition = 0;
-    return t;
-  });
 
-  console.log(dataPlus);
+  const [ teamName, seTeamName ] = useState('All');
 
-  const ordenarData = (equiposFiltrados) => {
-    let enumeradorA = 0;
-    let enumeradorB = 0;
+  
 
-    const equiposOrdenados = equiposFiltrados.sort((a, b) => {
-      return  b.playerPoints - a.playerPoints;
-    });
 
-    const equiposNumerados = equiposOrdenados.map((element) => {
-      enumeradorA += 1
-      element.playerPosition = enumeradorA 
-      return element
-    });
+  // const ordenarData = (equiposFiltrados) => {
+  //   let enumeradorA = 0;
+  //   let enumeradorB = 0;
 
-    for (let i = 0; i < equiposNumerados.length; i++) {
+  //   const equiposOrdenados = equiposFiltrados.sort((a, b) => {
+  //     return  b.playerPoints - a.playerPoints;
+  //   });
+
+  //   const equiposNumerados = equiposOrdenados.map((element) => {
+  //     enumeradorA += 1
+  //     element.playerPosition = enumeradorA 
+  //     return element
+  //   });
+
+  //   for (let i = 0; i < equiposNumerados.length; i++) {
     
-      if(i !== 0) {
+  //     if(i !== 0) {
 
 
-          if (equiposNumerados[i].playerPoints === equiposNumerados[i-1].playerPoints ) {
-            equiposNumerados[i].playerPosition = enumeradorB;
-            continue;
-          }
+  //         if (equiposNumerados[i].playerPoints === equiposNumerados[i-1].playerPoints ) {
+  //           equiposNumerados[i].playerPosition = enumeradorB;
+  //           continue;
+  //         }
 
-      }
+  //     }
 
-      enumeradorB += 1;
-      equiposNumerados[i].playerPosition = enumeradorB;
+  //     enumeradorB += 1;
+  //     equiposNumerados[i].playerPosition = enumeradorB;
 
-    }
+  //   }
 
-    return equiposNumerados;
-  }
+  //   return equiposNumerados;
+  // }
 
-  const filtrarEquipo = (arr, equipo) => {
+  // const filtrarEquipo = (arr, equipo) => {
     
-    const equipos = arr.filter((e) => e.teamName === equipo);
+  //   const equipos = arr.filter((e) => e.teamName === equipo);
 
-    // Llamar a función de ordenamiento
-    const dataLista = ordenarData(equipos);
-    console.log(dataLista);
+  //   // Llamar a función de ordenamiento
+  //   const dataLista = ordenarData(equipos);
+  //   console.log(dataLista);
 
-    setPlayers(dataLista);
-  };
+  //   setPlayers(dataLista);
+  // };
+
 
   return (
     <>
@@ -120,7 +119,7 @@ const TeamButtonsContainer = ({ data }) => {
 
         <ButtonsContainer>
           <div>
-            <TeamButton onClick={() => {filtrarEquipo(dataPlus, 'All')}}>
+            <TeamButton onClick={() => seTeamName('All')}>
               ALL
             </TeamButton>
             <LegendButtonContainer>
@@ -129,7 +128,7 @@ const TeamButtonsContainer = ({ data }) => {
           </div>
 
           <div>
-            <TeamButton onClick={() => {filtrarEquipo(dataPlus, 'Leyendas')}}>
+            <TeamButton onClick={() => seTeamName('Leyendas')}>
              Leyendas
             </TeamButton>
             <LegendButtonContainer>
@@ -138,7 +137,7 @@ const TeamButtonsContainer = ({ data }) => {
           </div>
 
           <div>
-            <TeamButton onClick={() => {filtrarEquipo(dataPlus, 'Rookies')}}>
+            <TeamButton onClick={() => seTeamName('Rookies')}>
              Rookies
             </TeamButton>
             <LegendButtonContainer>
@@ -147,7 +146,7 @@ const TeamButtonsContainer = ({ data }) => {
           </div>
 
           <div>
-            <TeamButton onClick={() => {filtrarEquipo(dataPlus, 'All Stars')}}>
+            <TeamButton onClick={() => seTeamName('All Stars')}>
              All Stars
             </TeamButton>
             <LegendButtonContainer>
@@ -156,53 +155,16 @@ const TeamButtonsContainer = ({ data }) => {
           </div>
 
           <div>
-            <TeamButton onClick={() => {filtrarEquipo(dataPlus, 'Resto del mundo')}}>
+            <TeamButton onClick={() => seTeamName('Resto del mundo')}>
             RDM
             </TeamButton>
             <LegendButtonContainer>
             <LegendButton>Resto del mundo</LegendButton>
             </LegendButtonContainer>
           </div>
-
-          {/* <div>
-            <TeamButton onClick={() => {filtrarEquipo(dataPlus, 'DXT Ventanilla')}}>
-              DXT
-            </TeamButton>
-            <LegendButtonContainer>
-            <LegendButton>Ventanilla</LegendButton>
-            </LegendButtonContainer>
-          </div>
-
-          <div>
-            <TeamButton onClick={() => {filtrarEquipo(dataPlus, 'Puente Piedra')}}>
-              PTP
-            </TeamButton>
-            <LegendButtonContainer>
-            <LegendButton>Puente</LegendButton>
-            </LegendButtonContainer>
-          </div>
-
-          <div>
-            <TeamButton onClick={() => {filtrarEquipo(dataPlus, 'Manhattan')}}>
-              MHT
-            </TeamButton>
-            <LegendButtonContainer>
-            <LegendButton>Manhattan</LegendButton>
-            </LegendButtonContainer>
-          </div>
-
-          <div>
-            <TeamButton onClick={() => {filtrarEquipo(dataPlus, 'Kingston')}}>
-              KIG
-            </TeamButton>
-            <LegendButtonContainer>
-            <LegendButton>Kingston</LegendButton>
-            </LegendButtonContainer>
-          </div> */}
-
         </ButtonsContainer>
 
-        <ItemContainer data={players.length === 0 ? ordenarData(data) : players} />
+        <ItemContainer data={players} teamName={teamName}/>
         {/* <ItemContainer data={players.length === 0 ? ordenarData(data) : players} /> */}
         {/* <ItemContainer data={players.length === 0 ? data : players} /> */}
       </ContainerDiv>

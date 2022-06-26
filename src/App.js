@@ -17,10 +17,10 @@ function App() {
   const [players, setPlayers] = useState([]);
 
   const getPlayers = async () => {
-    const data = await fetch('https://02-basketball-championship-api-production.up.railway.app/players');
+    const res = await fetch('https://02-basketball-championship-api-production.up.railway.app/players');
     // const data = await fetch('http://localhost:4001/players');
-    const players = await data.json();
-    setPlayers(players.data);
+    const {data} = await res.json();
+    setPlayers(data);
   };
 
 
@@ -32,7 +32,7 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <TeamButtonsContainer data={players}/>
+      <TeamButtonsContainer players={players} setPlayers={setPlayers}/>
     </>
   );
 }

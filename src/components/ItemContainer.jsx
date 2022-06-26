@@ -14,11 +14,48 @@ const ItemContainerDiv = styled.div`
   box-sizing: border-box;
 `;
 
-const ItemContainer = ({data}) => {
+const ItemContainer = ({ data, teamName }) => {
 
+  const filteredForTeam = (el) => {
+    if (teamName === 'All') return true;
+    return el.teamName === teamName;
+  }
+
+  const sortedPlayer = (arr) => {
+    return arr.sort((a, b) => b.playerPoints - a.playerPoints);
+  }
+
+  const addPosition = (data) => {
+
+    let currentPosition = 1;
+    for (let i = 0; i < data.length; i++) {
+      if (i === 0) {
+        data[i].playerPosition = currentPosition;
+        continue;
+      }
+      if (data[i].playerPoints === data[i - 1].playerPoints) {
+        data[i].playerPosition = currentPosition;
+      }else {
+        data[i].playerPosition = ++currentPosition;
+      } 
+    }
+
+    return data;
+  }
+
+  const appplyFilter = (data) => {
+    const arrFiltered = data.filter(filteredForTeam);
+    const arrSorted = sortedPlayer(arrFiltered);
+    const arrWithPosition = addPosition(arrSorted);
+    return arrWithPosition;
+
+  };
+
+
+  console.log(data);
   return (
     <ItemContainerDiv>
-      {data.map((p) => {
+      {appplyFilter(data).map((p) => {
         return (
           <ListItem
             key={p._id}
@@ -28,9 +65,6 @@ const ItemContainer = ({data}) => {
             playerPoints={p.playerPoints}
             teamName={p.teamName}
             playerPosition={p.playerPosition}
-            // teamColor={p.teamColor}
-            // teamShadowColor={p.teamShadowColor}
-            // teamShadowHoverColor={p.teamShadowHoverColor}
           />
         );
       })}
