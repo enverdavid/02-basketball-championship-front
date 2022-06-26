@@ -14,6 +14,10 @@ const ContainerTitleLogo = styled.div`
 const StyledLogo = styled.img`
   width: 300px;
   margin-top: 40px;
+  @media (max-width: 540px) {
+    width: 230px;
+    margin-top: 40px;
+  }
 `;
 
 const StyledTitle = styled.h3`
