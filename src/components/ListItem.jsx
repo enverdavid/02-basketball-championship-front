@@ -143,6 +143,7 @@ const StyledH3 = styled.h3`
 const StyledH4 = styled.h4`
   color: #eaeaea;
   margin: 0;
+  font-size: 13px;
   font-weight: 400;
 `;
 
