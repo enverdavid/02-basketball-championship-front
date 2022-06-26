@@ -136,7 +136,7 @@ const StyledH3 = styled.h3`
   color: white;
   margin: 0;
   @media (max-width: 540px) {
-    font-size: 17px;
+    font-size: 15px;
   }
 `;
 
