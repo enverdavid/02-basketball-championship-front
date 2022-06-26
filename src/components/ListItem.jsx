@@ -111,6 +111,7 @@ const PositionPuntosContainer = styled.div`
   height: 50px;
   padding-top: 17px;
   padding-right: 20px;
+  margin-left: 5px;
 `;
 
 const StyledImg = styled.img`
@@ -146,6 +147,14 @@ const StyledH4 = styled.h4`
   font-size: 13px;
   font-weight: 400;
 `;
+const TextInactive = styled.span`
+  display: block;
+  text-align: left;
+  color: white;
+  margin: 0;
+  font-size: 12px;
+  font-weight: 400;
+`;
 
 const ListItem = ({
   playerName,
@@ -153,7 +162,9 @@ const ListItem = ({
   playerImg,
   playerPoints,
   teamName,
-  playerPosition
+  playerPosition,
+  inactive,
+  inactiveInfo
 }) => {
 
   // console.log(filterColors(teamName, teamColors))
@@ -179,6 +190,7 @@ const ListItem = ({
             <StyledH4>
               {teamName} #{playerNumber || ''}
             </StyledH4>
+            {inactive && <TextInactive>{inactiveInfo}</TextInactive>}
           </DatosContainer>
         </ContainerLeft>
 

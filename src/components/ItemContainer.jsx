@@ -65,6 +65,8 @@ const ItemContainer = ({ data, teamName }) => {
             playerPoints={p.playerPoints}
             teamName={p.teamName}
             playerPosition={p.playerPosition}
+            inactive={p?.inactive || false}
+            inactiveInfo={p?.inactiveInfo || ''}
           />
         );
       })}
