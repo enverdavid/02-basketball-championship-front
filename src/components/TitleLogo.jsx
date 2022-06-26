@@ -12,8 +12,8 @@ const ContainerTitleLogo = styled.div`
 `;
 
 const StyledLogo = styled.img`
-  width: 150px;
-  margin-top: 20px;
+  width: 300px;
+  margin-top: 40px;
 `;
 
 const StyledTitle = styled.h3`
@@ -24,11 +24,12 @@ const TitleLogo = () => {
   return (
     <>
       <StyledLogo
-        src="https://res.cloudinary.com/dbtw4mubl/image/upload/v1650865215/LBLN-statistics/logos/logo_usqcde.png"
+        // src="https://res.cloudinary.com/dbtw4mubl/image/upload/v1650865215/LBLN-statistics/logos/logo_usqcde.png"
+        src="https://res.cloudinary.com/dbtw4mubl/image/upload/v1656271362/LBLN-statistics/logos/campeonato_cooperativa_jntmra.png"
         alt="logo de LBLN"
       />
       <ContainerTitleLogo>
-        <StyledTitle>Liga de Basket del Norte</StyledTitle>
+        {/* <StyledTitle>Liga de Basket del Norte</StyledTitle> */}
         {/* <StyledTitle>Máximos Anotadores</StyledTitle> */}
       </ContainerTitleLogo>
     </>

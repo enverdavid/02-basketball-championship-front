@@ -23,8 +23,9 @@ const teamColors = [
   {
     nombreDeEquipo: 'Leyendas',
     principal: '#2364fb',
-    sombra: '0px 0px 9px 7px rgba(25, 76, 245, 0.3)',
-    sombraHover: '0px 0px 9px 7px rgba(42, 108, 185, 0.8)',
+    // sombra: '0px 0px 9px 7px rgba(25, 76, 245, 0.3)',
+    sombra: '0px 0px 9px 7px rgba(89, 119, 217, 0.4)',
+    sombraHover: '0px 0px 9px 7px rgba(59, 101, 179, 0.9)',
   },
   // {
   //   nombreDeEquipo: 'Pivoteando',
