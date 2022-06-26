@@ -121,6 +121,7 @@ const StyledImg = styled.img`
   object-fit: cover;
   border-radius: 50%;
   padding: 17px;
+  opacity: ${(props) => props.inactive? 0.4 : 1};
 `;
 
 const DatosContainer = styled.div`
@@ -185,7 +186,7 @@ const ListItem = ({
           <PositionNumberContainer>
             <StyledH3>{playerPosition}</StyledH3>
           </PositionNumberContainer>
-          <StyledImg src={playerImg || defaultPictureURL} />
+          <StyledImg src={playerImg || defaultPictureURL}  inactive={inactive}/>
           <DatosContainer>
             <StyledH3>{playerName}</StyledH3>
             <StyledH4>
